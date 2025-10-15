@@ -22,8 +22,16 @@ public class TicTacToe {
             }
             System.out.println(); // New line after each row
             if (i < size -1){
-                System.out.print("---+---+---"); // Separator between rows
+                System.out.println("---+---+---"); // Separator between rows
             }
         }
+    }
+
+    // Getter for testing
+    public Cell[][] getBoard(){
+        return board;
+    }
+    public int getSize(){
+        return size;
     }
 }
