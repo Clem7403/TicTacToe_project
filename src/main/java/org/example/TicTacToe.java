@@ -6,8 +6,10 @@ import java.util.Scanner;
 public class TicTacToe {
     private final int size = 3;
     private final Cell[][] board;
-    private Player player;
+    private Player[] players = {new Player("X"), new Player("O")};
+    int currentPlayerIndex = 0;
     Scanner scanner = new Scanner(System.in);
+
 
     public TicTacToe() {
         board = new Cell[size][size];
@@ -44,10 +46,23 @@ public class TicTacToe {
     public void getMoveFromPlayer(int moveX, int moveY, Player player){
         while (true){
             display();
-            System.out.print("Entrer les coordonnées de votre coup (x,y): ");
+            System.out.print("Entrer la ligne (1-3) : ");
             moveX = scanner.nextInt();
+            System.out.print("Entrer la colonne (1-3) : ");
             moveY = scanner.nextInt();
-            if(moveX >=)
+            moveX = moveX -1;
+            moveY = moveY -1;
+            if(moveX<0 || moveX>= size || moveY<0 ||moveY>=size){
+                System.out.println("Erreur, coordonnées en dehors des limites.");
+            } if (board[moveX][moveY].getOwner() != null){
+                System.out.println("Erreur, cette case est déjà utilisé");
+            } else {
+                Point point = new Point(moveX,moveY);
+                board[point.getX()][point.getY()].setOwner(player);
+                System.out.println(board[point.getX()][point.getY()].getOwner().getRepresentation());
+                display();
+                break;
+            }
         }
     }
 

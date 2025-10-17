@@ -2,8 +2,11 @@ package org.example;
 
 public class Player {
 
-    private final String representation = "X";
+    private String representation;
 
+    public Player(String representation){
+        this.representation = representation;
+    }
     public String getRepresentation() {
         return representation;
     }

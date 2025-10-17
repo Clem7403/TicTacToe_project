@@ -7,7 +7,7 @@ public class TicTacToeTest {
 
     @Test
     void testBoardInitialization(){
-        //Instanciation de l'objet
+        //Instantiation de l'objet
         TicTacToe ticTacToe = new TicTacToe();
 
         //Récupération du tableau de cellule
