@@ -6,8 +6,7 @@ import java.util.Scanner;
 public class TicTacToe {
     private final int size = 3;
     private final Cell[][] board;
-    private Player[] players = {new Player("X"), new Player("O")};
-    int currentPlayerIndex = 0;
+    private final Player[] players = {new Player("X"), new Player("O")};
     Scanner scanner = new Scanner(System.in);
 
 
@@ -19,6 +18,8 @@ public class TicTacToe {
             }
         }
     }
+
+
 
     public void display(){
         for(int i = 0 ; i < size; i++){
@@ -43,7 +44,9 @@ public class TicTacToe {
 
     }
 
-    public void getMoveFromPlayer(int moveX, int moveY, Player player){
+    public Point getMoveFromPlayer(Player player){
+        int moveX;
+        int moveY;
         while (true){
             display();
             System.out.print("Entrer la ligne (1-3) : ");
@@ -52,18 +55,87 @@ public class TicTacToe {
             moveY = scanner.nextInt();
             moveX = moveX -1;
             moveY = moveY -1;
+
             if(moveX<0 || moveX>= size || moveY<0 ||moveY>=size){
                 System.out.println("Erreur, coordonnées en dehors des limites.");
-            } if (board[moveX][moveY].getOwner() != null){
+                continue;
+            }
+
+            if (board[moveX][moveY].getOwner() != null){
                 System.out.println("Erreur, cette case est déjà utilisé");
+                continue;
+            }
+            return new Point(moveX,moveY);
+        }
+
+    }
+
+        public Boolean playMove(Point point, Player player){
+            if(board[point.getX()][point.getY()].getOwner() != null){
+                return false;
             } else {
-                Point point = new Point(moveX,moveY);
                 board[point.getX()][point.getY()].setOwner(player);
-                System.out.println(board[point.getX()][point.getY()].getOwner().getRepresentation());
-                display();
-                break;
+            } return true;
+        }
+
+    public void play(){
+        int currentPlayerIndex = 0;
+        while(!isOver()){
+            display();
+            Player currentPlayer = players[currentPlayerIndex];
+            System.out.println("C'est au tour du joueur " + currentPlayer.getRepresentation());
+            Point point = getMoveFromPlayer(currentPlayer);
+            playMove(point, currentPlayer);
+
+            currentPlayerIndex = 1 - currentPlayerIndex;
+        }
+        System.out.println("Match nul !");
+
+    }
+
+    public Boolean isBoardFull(){
+        for(int i = 0; i < size; i++){
+            for(int j = 0; j < size; j++){
+                if(board[i][j].getOwner()== null){
+                    return false;
+                }
+            }
+        } return true;
+    }
+
+    public Boolean isOver() {
+        // Vérifier les lignes
+        for (int i = 0; i < size; i++) {
+            if (board[i][0].getOwner() != null
+                    && board[i][0].getOwner() == board[i][1].getOwner()
+                    && board[i][1].getOwner() == board[i][2].getOwner()) {
+                return true;  // victoire horizontale
             }
         }
+
+        // Vérifier les colonnes
+        for (int j = 0; j < size; j++) {
+            if (board[0][j].getOwner() != null
+                    && board[0][j].getOwner() == board[1][j].getOwner()
+                    && board[1][j].getOwner() == board[2][j].getOwner()) {
+                return true;  // victoire verticale
+            }
+        }
+
+        // Vérifier les diagonales
+        if (board[0][0].getOwner() != null
+                && board[0][0].getOwner() == board[1][1].getOwner()
+                && board[1][1].getOwner() == board[2][2].getOwner()) {
+            return true;
+        }
+        if (board[0][2].getOwner() != null
+                && board[0][2].getOwner() == board[1][1].getOwner()
+                && board[1][1].getOwner() == board[2][0].getOwner()) {
+            return true;
+        }
+
+        // Vérifier si le plateau est plein
+        return isBoardFull();
     }
 
 
