@@ -9,16 +9,15 @@ public class ArtificialPlayer extends Player {
     }
 
     @Override
-    public void makeMove(TicTacToe ticTacToe) {
-        int x,y;
+    public void makeMove(TicTacToe ticTacToe, View view, InteractionUtilisateur UI) {
+        int x, y;
+        view.showMessage("L'IA (" + getRepresentation() + ") réfléchit...");
 
-        System.out.println("L'IA (" + getRepresentation() + ") réfléchit...");
-
-        while(true){
+        while (true) {
             x = random.nextInt(ticTacToe.getSize());
             y = random.nextInt(ticTacToe.getSize());
 
-            if(ticTacToe.getBoard()[x][y].getOwner() == null) {
+            if (ticTacToe.getBoard()[x][y].getOwner() == null) {
                 ticTacToe.getBoard()[x][y].setOwner(this);
                 break;
             }

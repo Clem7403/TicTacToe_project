@@ -11,5 +11,5 @@ public abstract class Player {
         return representation;
     }
 
-    public abstract void makeMove(TicTacToe ticTacToe);
+    public abstract void makeMove(TicTacToe ticTacToe, View view, InteractionUtilisateur UI);
 }
