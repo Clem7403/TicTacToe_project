@@ -1,8 +1,8 @@
 package org.example;
 
-public class Player {
+public abstract class Player {
 
-    private String representation;
+    protected String representation;
 
     public Player(String representation){
         this.representation = representation;
@@ -10,4 +10,6 @@ public class Player {
     public String getRepresentation() {
         return representation;
     }
+
+    public abstract void makeMove(TicTacToe ticTacToe);
 }
