@@ -2,13 +2,14 @@ package org.example;
 
 import javax.swing.text.html.parser.Parser;
 import java.util.Scanner;
-
+//attribut
 public class TicTacToe {
     private final int size = 3;
     private final Cell[][] board;
     private final Player[] players;
     Scanner scanner = new Scanner(System.in);
 
+//méthode
 
     public TicTacToe(Player player1, Player player2) {
         this.players = new Player[]{player1, player2};

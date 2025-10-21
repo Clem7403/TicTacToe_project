@@ -1,5 +1,6 @@
 package org.example;
 import java.util.Scanner;
+import java.util.InputMismatchException;
 
 public class InteractionUtilisateur {
     private Scanner scanner = new Scanner(System.in);
@@ -8,22 +9,27 @@ public class InteractionUtilisateur {
         int x, y;
 
         while(true){
-            view.displayBoard(ticTacToe);
-            view.showMessage("C'est au tour de " + player.getRepresentation());
-            view.showMessage("Entrer la ligne (1-3) : ");
-            x = scanner.nextInt() - 1;
-            view.showMessage("Entrer la colonne (1-3) : ");
-            y = scanner.nextInt() - 1;
+            try {
+                view.displayBoard(ticTacToe);
+                view.showMessage("C'est au tour de " + player.getRepresentation());
+                view.showMessage("Entrer la ligne (1-3) : ");
+                x = scanner.nextInt() - 1;
+                view.showMessage("Entrer la colonne (1-3) : ");
+                y = scanner.nextInt() - 1;
 
-            if(x < 0 || x >= ticTacToe.getSize() || y < 0 || y >= ticTacToe.getSize()){
-                view.showMessage("Coordonnées en dehors du plateau !");
-                continue;
+                if (x < 0 || x >= ticTacToe.getSize() || y < 0 || y >= ticTacToe.getSize()) {
+                    view.showMessage("Coordonnées en dehors du plateau !");
+                    continue;
+                }
+                if (ticTacToe.getBoard()[x][y].getOwner() != null) {
+                    view.showMessage("Case déjà occupée ! !");
+                    continue;
+                }
+                return new Point(x, y);
+            } catch (InputMismatchException e) {
+                view.showMessage("Entrer un numero valide !");
+                scanner.nextLine();;
             }
-            if(ticTacToe.getBoard()[x][y].getOwner() != null){
-                view.showMessage("Case déjà occupée ! !");
-                continue;
-            }
-            return new Point(x, y);
         }
     }
     public int getMenuChoice(View view){

@@ -1,9 +1,9 @@
 package org.example;
 
 public abstract class Player {
-
+    //attribut
     protected String representation;
-
+    //méthode
     public Player(String representation){
         this.representation = representation;
     }

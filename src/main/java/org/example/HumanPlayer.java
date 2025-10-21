@@ -2,8 +2,9 @@ package org.example;
 import java.util.Scanner;
 
 public class HumanPlayer extends Player {
+    //attribut
     private Scanner scanner = new Scanner(System.in);
-
+    //méthode
     public HumanPlayer(String representation) {
         super(representation);
     }
