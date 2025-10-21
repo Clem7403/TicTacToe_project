@@ -23,19 +23,20 @@ public class TicTacToe {
 
 
 
-    public void display(){
-        for(int i = 0 ; i < size; i++){
-            //Display each row
-            for(int j = 0; j < size; j++){
-                System.out.print(board[i][j].getRepresentation());
-                if (j < size -1) System.out.print("|"); // Separator between cells
+    public void display() {
+        System.out.println("    1   2   3"); // numéros de colonnes
+        for (int i = 0; i < size; i++) {
+            System.out.print((i + 1) + " "); // numéro de ligne
+            for (int j = 0; j < size; j++) {
+                System.out.print(" " + board[i][j].getRepresentation().trim() + " ");
+                if (j < size - 1) System.out.print("|");
             }
-            System.out.println(); // New line after each row
-            if (i < size -1){
-                System.out.println("---+---+---"); // Separator between rows
-            }
+            System.out.println();
+            if (i < size - 1) System.out.println("   ---+---+---");
         }
+        System.out.println();
     }
+
     public void setOwner(int x, int y, Player player){
         if (x >= 0 && x < size && y >= 0 && y < size && board[x][y].getOwner() == null) {
             board[x][y].setOwner(player);
@@ -51,23 +52,26 @@ public class TicTacToe {
             } return true;
         }
 
-    public void play() {
+    public void play(View view, InteractionUtilisateur UI) {
         int currentPlayerIndex = 0;
         while (!isOver()) {
-            display();
+
             Player currentPlayer = players[currentPlayerIndex];
-            System.out.println("C'est au tour de " + currentPlayer.getRepresentation());
-            currentPlayer.makeMove(this);
+            if(currentPlayer instanceof HumanPlayer){
+                Point move = UI.getMove(view, this, currentPlayer);
+                playMove(move, currentPlayer);
+            } else {
+                currentPlayer.makeMove(this);
+            }
 
             //changement de joueur
             currentPlayerIndex = 1 - currentPlayerIndex;
         }
+        view.displayBoard(this);
 
-        display();
         if (isBoardFull() && !checkVictory()) {
-            System.out.println("Match nul ");
-        }
-        System.out.println("Le joueur " + players[1 - currentPlayerIndex].getRepresentation());
+            view.showMessage("Match nul ");
+        } view.showMessage("Le joueur " + players[1 - currentPlayerIndex].getRepresentation() + " a gagné !");
     }
 
 

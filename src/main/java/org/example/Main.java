@@ -6,16 +6,10 @@ import java.util.Scanner;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+       View view = new View();
+       InteractionUtilisateur UI = new InteractionUtilisateur();
 
-        System.out.println("TicTacToe le jeu des vrais héros !");
-        System.out.println("Choisissez le mode de jeu :");
-        System.out.println("1. Humain vs Humain");
-        System.out.println("2. Humain vs IA");
-        System.out.println("3. IA vs IA");
-        System.out.print("Votre choix : ");
-
-        int choice = scanner.nextInt();
+       int choice = UI.getMenuChoice(view);
         Player player1, player2;
 
         switch (choice) {
@@ -39,7 +33,7 @@ public class Main {
         }
 
         TicTacToe ticTacToe = new TicTacToe(player1, player2);
-        ticTacToe.play();
+        ticTacToe.play(view, UI);
 
     }
 }
