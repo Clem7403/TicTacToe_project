@@ -53,11 +53,11 @@ direction TB
 	    +resetGame()
     }
 
-    TicTacToe --> Game
-    Game --> Player
-    Game --> Cell
+    Game --> TicTacToe 
+    TicTacToe --> Player
+    TicTacToe --> Cell
     Cell --> Player
-    Main --> TicTacToe
+    Game --> TicTacToe
 ```
 
 Iteration 1 – Display the Game Board
