@@ -53,6 +53,7 @@ direction TB
 	    +resetGame()
     }
 
+	Main --> Game
     Game --> TicTacToe 
     TicTacToe --> Player
     TicTacToe --> Cell
