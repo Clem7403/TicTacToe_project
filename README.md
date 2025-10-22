@@ -58,7 +58,7 @@ direction TB
     TicTacToe --> Player
     TicTacToe --> Cell
     Cell --> Player
-    Game --> TicTacToe
+   
 ```
 
 Iteration 1 – Display the Game Board
