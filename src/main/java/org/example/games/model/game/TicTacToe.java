@@ -11,14 +11,14 @@ public class TicTacToe extends Game {
 
     @Override
     public boolean checkVictory() {
-        int boardWidth = board.getWidth();
-        int boardHeight = board.getHeight();
+        int boardWidth = getBoard().getWidth();
+        int boardHeight = getBoard().getHeight();
         int winningLength = 3;
 
         for (int row = 0; row < boardHeight; row++) {
             for (int col = 0; col < boardWidth; col++) {
 
-                Player currentPlayer = board.getCell(col, row).getOwner();
+                Player currentPlayer = getBoard().getCell(col, row).getOwner();
                 if (currentPlayer == null) continue;
 
                 int[][] moveDirections = { {1, 0}, {0, 1}, {1, 1}, {1, -1} };
@@ -33,7 +33,7 @@ public class TicTacToe extends Game {
 
                     while (nextCol >= 0 && nextCol < boardWidth &&
                             nextRow >= 0 && nextRow < boardHeight &&
-                            board.getCell(nextCol, nextRow).getOwner() == currentPlayer) {
+                            getBoard().getCell(nextCol, nextRow).getOwner() == currentPlayer) {
 
                         samePlayerCount++;
                         if (samePlayerCount == winningLength) {
