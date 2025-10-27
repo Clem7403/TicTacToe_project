@@ -1,13 +1,23 @@
-package org.example;
+package org.example.games.main;
 
-import java.util.Scanner;
+import org.example.games.model.players.ArtificialPlayer;
+import org.example.games.model.players.HumanPlayer;
+import org.example.games.model.game.TicTacToe;
+import org.example.games.view.UserInterface;
+import org.example.games.model.players.Player;
+import org.example.games.view.View;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-       View view = new View();
-       InteractionUtilisateur UI = new InteractionUtilisateur();
+
+        View view = new View();
+        UserInterface userInterface = new UserInterface();
+
+        start();
+    }       /*View view = new View();
+       UserInterface UI = new UserInterface();
 
        int choice = UI.getMenuChoice(view);
         Player player1, player2;
@@ -35,5 +45,4 @@ public class Main {
         TicTacToe ticTacToe = new TicTacToe(player1, player2);
         ticTacToe.play(view, UI);
 
-    }
-}
+    }*/
