@@ -4,7 +4,7 @@ import org.example.games.model.materiel.Board;
 import org.example.games.model.materiel.Point;
 import org.example.games.model.players.Player;
 
-public abstract class Game implements GameInterface {
+public abstract class Game implements GameStrategy {
     private Player[] players;
     private final Board board;
     private int currentPlayerIndex = 0;
@@ -31,6 +31,10 @@ public abstract class Game implements GameInterface {
             return true;
         }
         return false;
+    }
+
+    public Point getMove(Player player) {
+        return player.decideMove(this);
     }
 
     public Board getBoard() {

@@ -17,11 +17,9 @@ public class UserInterface {
         return new Point(x, y);
     }
 
-    public int getMenuChoice(View view) {
-        System.out.println("Choisis à quel jeu jouer :");
-        System.out.println("1. Jouer au TicTacToe");
-        System.out.println("2. Jouer au Gomoku");
-        System.out.println("0. Quitter");
+    public int askForInt(){
         return scanner.nextInt();
     }
+
+
 }
