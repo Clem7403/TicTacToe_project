@@ -77,3 +77,221 @@ Iteration 4 – Game End Conditions
   - Stop the game when a player aligns three symbols.
   - Detect a draw if the board is fully occupied without a winner.
 
+Class Diagramm type MVC (v2)
+```mermaid
+classDiagram
+direction BT
+class ArtificialPlayer {
++ ArtificialPlayer(String)
++ decideMove(Game) Point
+  }
+  class Board {
++ Board(int, int)
+- int width
+- int height
++ getCell(int, int) Cell
++ setCellOwner(Point, Player) void
+  int height
+  boolean boardFull
+  int width
+  }
+  class Cell {
++ Cell()
+- Player owner
+  String representation
+  Player owner
+  }
+  class Game {
++ Game(int, int, Player[])
+- Board board
+- Player[] players
++ checkVictory() boolean
++ playMove(Point, Player) boolean
+  boolean over
+  Board board
+  Player currentPlayer
+  Player[] players
+  }
+  class GameController {
++ GameController(Game, View, UserInterface)
++ runGameLoop() void
++ handleVictory() void
++ start() void
+  }
+  class GameInterface {
+  <<Interface>>
++ checkVictory() boolean
++ playMove(Point, Player) boolean
+  boolean over
+  }
+  class Gomoku {
++ Gomoku(Player[])
+  }
+  class HumanPlayer {
++ HumanPlayer(String)
++ decideMove(Game) Point
+  }
+  class Main {
++ Main()
++ main(String[]) void
+  }
+  class Player {
++ Player(String)
+- String representation
++ decideMove(Game) Point
+  String representation
+  }
+  class Point {
++ Point(int, int)
+- int y
+- int x
+  int y
+  int x
+  }
+  class TicTacToe {
++ TicTacToe(Player[])
++ checkVictory() boolean
+  }
+  class UserInterface {
++ UserInterface()
++ getMove(Player, Game) Point
++ getMenuChoice(View) int
+  }
+  class View {
++ View()
++ displayBoard(Board) void
++ showMessage(String) void
+  }
+
+ArtificialPlayer  -->  Player
+Game  ..>  GameInterface
+Gomoku  -->  Game
+HumanPlayer  -->  Player
+TicTacToe  -->  Game 
+```
+Class Diagram type MVC (v3)
+
+```mermaid
+classDiagram
+direction BT
+class ArtificialPlayer {
+  + ArtificialPlayer(String) 
+  + decideMove(Game) Point
+}
+class Board {
+  + Board(int, int) 
+  - int width
+  - int height
+  + setCellOwner(Point, Player) void
+  + getCell(int, int) Cell
+   int height
+   int width
+   boolean boardFull
+}
+class Cell {
+  + Cell() 
+  - Player owner
+   String representation
+   Player owner
+}
+class Game {
+  + Game(int, int, Player[]) 
+  - Player[] players
+  - Board board
+  + checkVictory() boolean
+  + playMove(Point, Player) boolean
+   Board board
+   boolean over
+   Player currentPlayer
+   Player[] players
+}
+class GameController {
+  + GameController() 
+  + interact() void
+  - parseUserChoice(int) boolean
+  - getMove(Player) Point
+  + init() boolean
+  + runGameLoop() Player
+}
+class GameInterface {
+<<Interface>>
+  + playMove(Point, Player) boolean
+  + checkVictory() boolean
+   boolean over
+}
+class Gomoku {
+  + Gomoku(Player[]) 
+  + checkVictory() boolean
+}
+class HumanPlayer {
+  + HumanPlayer(String) 
+  + decideMove(Game) Point
+}
+class Main {
+  + Main() 
+  + main(String[]) void
+}
+class Player {
+  + Player(String) 
+  - String representation
+  + decideMove(Game) Point
+   String representation
+}
+class Point {
+  + Point(int, int) 
+  - int y
+  - int x
+   int x
+   int y
+}
+class State {
+<<enumeration>>
+  + State() 
+  + valueOf(String) State
+  + values() State[]
+}
+class TicTacToe {
+  + TicTacToe(Player[]) 
+  + checkVictory() boolean
+}
+class UserInterface {
+  + UserInterface() 
+  + askForInt() int
+  + getMove(Player, Game) Point
+}
+class View {
+  + View() 
+  + displayBoard(Board) void
+  + showMessage(String) void
+  + testLog(String) void
+   int menuChoice
+}
+
+ArtificialPlayer  -->  Player 
+ArtificialPlayer  ..>  Point : «create»
+Board  ..>  Cell : «create»
+Board "1" *--> "cells *" Cell 
+Cell "1" *--> "owner 1" Player 
+Game  ..>  Board : «create»
+Game "1" *--> "board 1" Board 
+Game  ..>  GameInterface 
+Game "1" *--> "players *" Player 
+GameController  ..>  ArtificialPlayer : «create»
+GameController "1" *--> "game 1" Game 
+GameController  ..>  Gomoku : «create»
+GameController  ..>  HumanPlayer : «create»
+GameController  ..>  Player : «create»
+GameController "1" *--> "state 1" State 
+GameController  ..>  TicTacToe : «create»
+GameController  ..>  UserInterface : «create»
+GameController "1" *--> "userInterface 1" UserInterface 
+GameController "1" *--> "view 1" View 
+GameController  ..>  View : «create»
+Gomoku  -->  Game 
+HumanPlayer  -->  Player 
+Main  ..>  GameController : «create»
+TicTacToe  -->  Game 
+UserInterface  ..>  Point : «create»
+View  ..>  UserInterface : «create»
+View "1" *--> "userInterface 1" UserInterface 
+```
