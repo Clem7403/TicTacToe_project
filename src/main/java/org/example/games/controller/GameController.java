@@ -10,8 +10,6 @@ import org.example.games.model.players.Player;
 import org.example.games.view.UserInterface;
 import org.example.games.view.View;
 
-import static java.lang.System.exit;
-
 public class GameController {
 
     private Game game;
@@ -27,7 +25,7 @@ public class GameController {
 
     public void interact() {
         Player winner = null;
-        while (state != State.EXIT){
+        while (state != State.EXIT) {
 
             switch (state) {
                 case INIT:
@@ -35,12 +33,12 @@ public class GameController {
                     if (wantToPlay) {
                         state = State.PLAY;
                     } else {
-                        state =  State.EXIT;
+                        state = State.EXIT;
                     }
                     break;
                 case PLAY:
                     winner = runGameLoop();
-                    if(game.checkVictory()){
+                    if (game.checkVictory()) {
                         state = State.WIN;
                     } else {
                         state = State.DRAW;
@@ -56,7 +54,6 @@ public class GameController {
                     break;
 
 
-
             }
         }
         view.showMessage("Bye !");
@@ -64,23 +61,24 @@ public class GameController {
 
     public boolean init() {
         view.showMessage("Bienvenue !");
-        int choice = view.getMenuChoice() ;
+        int choice = view.getMenuChoice();
         return parseUserChoice(choice);
     }
 
-    private boolean parseUserChoice(int choice){
-        Player[] players = new Player[] {new ArtificialPlayer("O"), new HumanPlayer("X")};
+    private boolean parseUserChoice(int choice) {
+        Player[] players = new Player[]{new ArtificialPlayer("O"), new HumanPlayer("X")};
 
-          switch (choice){
+        switch (choice) {
             case 1:
                 game = new TicTacToe(players);
                 return true;
             case 2:
                 game = new Gomoku(players);
                 return true;
-              case 0:
+            case 0:
                 return false;
-        } return false;
+        }
+        return false;
     }
 
     public Player runGameLoop() {
@@ -95,7 +93,8 @@ public class GameController {
             if (!game.playMove(move, currentPlayer)) {
                 view.showMessage("Case invalide, sélectionné une autre case.");
             }
-        } return currentPlayer;
+        }
+        return currentPlayer;
     }
 
     private Point getMove(Player currentPlayer) {
@@ -107,8 +106,6 @@ public class GameController {
         }
         return move;
     }
-
-
 
 
 }

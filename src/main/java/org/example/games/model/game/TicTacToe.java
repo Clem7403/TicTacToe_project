@@ -21,7 +21,7 @@ public class TicTacToe extends Game {
                 Player currentPlayer = getBoard().getCell(col, row).getOwner();
                 if (currentPlayer == null) continue;
 
-                int[][] moveDirections = { {1, 0}, {0, 1}, {1, 1}, {1, -1} };
+                int[][] moveDirections = {{1, 0}, {0, 1}, {1, 1}, {1, -1}};
 
                 for (int[] direction : moveDirections) {
                     int colStep = direction[0];

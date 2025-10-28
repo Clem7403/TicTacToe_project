@@ -3,7 +3,7 @@ package org.example.games.view;
 import org.example.games.model.materiel.Board;
 
 public class View {
-    UserInterface userInterface =  new UserInterface();
+    UserInterface userInterface = new UserInterface();
 
     public void displayBoard(Board board) {
         // Display column numbers header

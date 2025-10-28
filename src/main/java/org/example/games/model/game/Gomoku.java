@@ -5,7 +5,7 @@ import org.example.games.model.players.Player;
 public class Gomoku extends Game {
 
     public Gomoku(Player[] players) {
-        super(15,15,players);
+        super(15, 15, players);
     }
 
     @Override
@@ -20,7 +20,7 @@ public class Gomoku extends Game {
                 Player currentPlayer = getBoard().getCell(col, row).getOwner();
                 if (currentPlayer == null) continue;
 
-                int[][] moveDirections = { {1, 0}, {0, 1}, {1, 1}, {1, -1} };
+                int[][] moveDirections = {{1, 0}, {0, 1}, {1, 1}, {1, -1}};
 
                 for (int[] direction : moveDirections) {
                     int colStep = direction[0];

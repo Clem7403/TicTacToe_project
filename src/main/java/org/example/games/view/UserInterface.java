@@ -17,7 +17,7 @@ public class UserInterface {
         return new Point(x, y);
     }
 
-    public int askForInt(){
+    public int askForInt() {
         return scanner.nextInt();
     }
 

@@ -13,7 +13,7 @@ public abstract class Player {
     }
 
     public String getRepresentation() {
-        return " " +representation + " ";
+        return " " + representation + " ";
     }
 
     public void setRepresentation(String representation) {
