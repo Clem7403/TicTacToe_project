@@ -1,4 +1,4 @@
-package org.example.games.model.game;
+package org.example.games.controller.game;
 
 import org.example.games.model.materiel.Board;
 import org.example.games.model.materiel.Point;

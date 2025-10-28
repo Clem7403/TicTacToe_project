@@ -1,6 +1,6 @@
 package org.example.games.view;
 
-import org.example.games.model.game.Game;
+import org.example.games.controller.game.Game;
 import org.example.games.model.players.Player;
 import org.example.games.model.materiel.Point;
 

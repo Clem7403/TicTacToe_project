@@ -1,6 +1,6 @@
 package org.example.games.model.players;
 
-import org.example.games.model.game.Game;
+import org.example.games.controller.game.Game;
 import org.example.games.model.materiel.Point;
 
 public abstract class Player {

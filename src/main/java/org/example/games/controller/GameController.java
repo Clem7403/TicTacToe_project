@@ -1,8 +1,8 @@
 package org.example.games.controller;
 
-import org.example.games.model.game.Game;
-import org.example.games.model.game.Gomoku;
-import org.example.games.model.game.TicTacToe;
+import org.example.games.controller.game.Game;
+import org.example.games.controller.game.Gomoku;
+import org.example.games.controller.game.TicTacToe;
 import org.example.games.model.materiel.Point;
 import org.example.games.model.players.ArtificialPlayer;
 import org.example.games.model.players.HumanPlayer;
