@@ -1,10 +1,29 @@
 package org.example.games.view;
 
 import org.example.games.model.materiel.Board;
-
+/**
+ * Classe représentant la vue principale du jeu.
+ * <p>
+ * Cette classe est responsable de l'affichage du plateau, des messages et
+ * du menu. Elle ne contient aucune logique de jeu et se limite à la
+ * présentation, respectant ainsi le principe MVC.
+ * </p>
+ *
+ * <p>Elle utilise {@link UserInterface} pour récupérer les entrées
+ * utilisateur lorsque nécessaire.</p>
+ *
+ * <p>Cette classe est indépendante de la logique métier et du contrôleur.</p>
+ *
+ * @author [Ton Nom]
+ * @version 1.0
+ */
 public class View {
     UserInterface userInterface = new UserInterface();
-
+    /**
+     * Affiche le plateau de jeu dans la console.
+     *
+     * @param board plateau à afficher
+     */
     public void displayBoard(Board board) {
         // Display column numbers header
         System.out.print("  |");
@@ -40,10 +59,19 @@ public class View {
         }
     }
 
+    /**
+     * Affiche un message simple dans la console.
+     *
+     * @param message texte à afficher
+     */
     public void showMessage(String message) {
         System.out.println(message);
     }
-
+    /**
+     * Affiche le menu principal et récupère le choix de l'utilisateur.
+     *
+     * @return l'entier correspondant au choix du joueur
+     */
     public int getMenuChoice() {
         System.out.println("Choisis à quel jeu jouer :");
         System.out.println("1. Jouer au TicTacToe");
